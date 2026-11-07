@@ -1,0 +1,345 @@
+import type { Situation } from "@/engine/types";
+
+/** Mundo 3. Alternativas de la V2 §5; consecuencias pendientes de revisión psicológica. */
+export const PASEOS: Situation[] = [
+  {
+    id: 17,
+    world: "paseos",
+    title: "Se canceló el paseo",
+    story:
+      "{n} esperó toda la semana una visita al zoológico, pero comienza una lluvia intensa y el paseo se cancela.",
+    feels: ["tristeza", "enojo"],
+    validation:
+      "Qué pena, lo estabas esperando toda la semana. Sentirse triste tiene mucho sentido.",
+    learning: "Los planes pueden cambiar. Se puede sentir tristeza y buscar nuevas opciones.",
+    strategy: "Expresar la tristeza y buscar otro plan",
+    topic: "frustracion",
+    skills: ["reconozco", "calma"],
+    set: "busStop",
+    npcs: ["teacher", "peer"],
+    prop: "none",
+    rain: true,
+    options: [
+      {
+        id: "A",
+        text: "Gritar.",
+        icon: "📢",
+        react: "outburst",
+        consequence: "Todos se sobresaltan. La lluvia sigue cayendo y el paseo sigue cancelado.",
+      },
+      {
+        id: "B",
+        text: "Culpar al profesor.",
+        icon: "👉",
+        react: "blame",
+        consequence:
+          "La profesora no decide sobre la lluvia. Se pone triste y el grupo se queda en silencio.",
+      },
+      {
+        id: "C",
+        text: "Negarse a otras actividades.",
+        icon: "🙅",
+        react: "withdraw",
+        consequence: "Los demás encuentran otro plan divertido y {n} queda sin participar.",
+      },
+      {
+        id: "D",
+        text: "Expresar tristeza y preguntar por otro plan.",
+        icon: "🌦️",
+        react: "talk",
+        recommended: true,
+        consequence:
+          "La profesora escucha, anota una nueva fecha y propone ver un video de animales en el aula.",
+      },
+      {
+        id: "E",
+        text: "Romper materiales.",
+        icon: "💥",
+        react: "breakThing",
+        consequence: "Se dañan cosas que el grupo iba a usar. Ahora hay que ordenar y reparar.",
+      },
+    ],
+  },
+  {
+    id: 18,
+    world: "paseos",
+    title: "Tengo miedo de subir al autobús",
+    story: "Es el primer paseo de {n} sin sus padres, y siente muchos nervios.",
+    feels: ["miedo"],
+    validation: "Sentir miedo cuando algo es nuevo es normal. A muchas personas les pasa.",
+    learning: "Sentir miedo es normal. Pedir acompañamiento puede ayudar a sentir seguridad.",
+    strategy: "Contar lo que siente",
+    topic: "calma",
+    skills: ["reconozco", "calma"],
+    set: "busStop",
+    npcs: ["teacher", "peer"],
+    prop: "none",
+    options: [
+      {
+        id: "A",
+        text: "Salir corriendo.",
+        icon: "🏃",
+        react: "flee",
+        consequence: "Salir sin avisar es peligroso. La profesora se asusta y debe buscar a {n}.",
+      },
+      {
+        id: "B",
+        text: "Esconderse.",
+        icon: "🙈",
+        react: "withdraw",
+        consequence: "Nadie sabe dónde está {n}. El autobús se demora mientras todos le buscan.",
+      },
+      {
+        id: "C",
+        text: "Contar lo que siente y pedir acompañamiento.",
+        icon: "🤝",
+        react: "ask",
+        recommended: true,
+        consequence:
+          "La profesora se sienta a su lado y le muestra el autobús. Suben juntos, paso a paso.",
+      },
+      {
+        id: "D",
+        text: "Empujar a otros.",
+        icon: "✋",
+        react: "harm",
+        consequence: "Los compañeros se asustan y se alejan justo cuando {n} necesitaba compañía.",
+      },
+      {
+        id: "E",
+        text: "Fingir que no siente nada aunque necesita ayuda.",
+        icon: "🎭",
+        react: "withdraw",
+        consequence:
+          "Sube al autobús, pero el miedo viaja por dentro. Nadie sabe que necesita apoyo.",
+      },
+    ],
+  },
+  {
+    id: 19,
+    world: "paseos",
+    title: "Me separé de mi grupo",
+    story: "Durante una visita al museo, {n} se da cuenta de que ya no ve a sus compañeros.",
+    feels: ["miedo"],
+    validation: "Es muy normal asustarse cuando ya no ves a tu grupo.",
+    learning: "Al separarse del grupo, hay que buscar ayuda segura y no alejarse más.",
+    strategy: "Quedarse en un lugar seguro y buscar personal identificado",
+    topic: "seguridad",
+    skills: ["resuelvo", "calma"],
+    set: "museum",
+    npcs: ["staff"],
+    prop: "none",
+    options: [
+      {
+        id: "A",
+        text: "Correr sin rumbo.",
+        icon: "🏃",
+        react: "flee",
+        consequence:
+          "Se aleja todavía más del lugar donde estaba el grupo y cuesta más encontrarle.",
+      },
+      {
+        id: "B",
+        text: "Salir del lugar.",
+        icon: "🚪",
+        react: "flee",
+        consequence:
+          "Afuera es menos seguro y nadie espera encontrar a {n} allí. Siempre es mejor quedarse adentro.",
+      },
+      {
+        id: "C",
+        text: "Seguir a un desconocido.",
+        icon: "❗",
+        react: "flee",
+        consequence:
+          "Puede ser peligroso ir con alguien que no conoce. Es mejor buscar a una persona con uniforme del lugar.",
+      },
+      {
+        id: "D",
+        text: "Esconderse.",
+        icon: "🙈",
+        react: "withdraw",
+        consequence:
+          "Se entiende el miedo, pero así es más difícil que le encuentren quienes le buscan.",
+      },
+      {
+        id: "E",
+        text: "Permanecer en un lugar seguro y buscar personal identificado.",
+        icon: "🎫",
+        react: "safeWait",
+        recommended: true,
+        consequence:
+          "{n} no se aleja y le pide ayuda a una trabajadora con uniforme. Pronto vuelve el grupo.",
+      },
+    ],
+  },
+  {
+    id: 20,
+    world: "paseos",
+    title: "Mi amigo se sentó con otra persona",
+    story: "{n} quería sentarse en el autobús con su mejor amistad, pero eligió otro asiento.",
+    feels: ["tristeza"],
+    validation: "Da pena cuando esperabas algo y no sucede. Es válido sentirse así.",
+    learning: "Se puede expresar la decepción sin controlar las decisiones de las amistades.",
+    strategy: "Expresar la decepción",
+    topic: "comunicacion",
+    skills: ["reconozco", "comprendo"],
+    set: "busStop",
+    npcs: ["peer", "peer2"],
+    prop: "none",
+    options: [
+      {
+        id: "A",
+        text: "Insultar.",
+        icon: "🤬",
+        react: "insult",
+        consequence: "La otra persona se siente mal y se aleja. El viaje empieza con un problema.",
+      },
+      {
+        id: "B",
+        text: "Expresar su decepción y buscar otro asiento.",
+        icon: "💬",
+        react: "talk",
+        recommended: true,
+        consequence:
+          "{n} dice que le hubiera gustado sentarse juntos y encuentra otro lugar. A la vuelta sí comparten asiento.",
+      },
+      {
+        id: "C",
+        text: "Empujar.",
+        icon: "✋",
+        react: "harm",
+        consequence:
+          "Alguien se puede lastimar en el pasillo. La profesora debe detener la subida.",
+      },
+      {
+        id: "D",
+        text: "Quitar pertenencias.",
+        icon: "🤲",
+        react: "sneak",
+        consequence:
+          "La otra persona busca sus cosas y se preocupa. La confianza entre ambos se rompe un poco.",
+      },
+      {
+        id: "E",
+        text: "Negarse a sentarse.",
+        icon: "🙅",
+        react: "withdraw",
+        consequence:
+          "El autobús no puede salir hasta que todos estén sentados, y todos se quedan esperando.",
+      },
+    ],
+  },
+  {
+    id: 21,
+    world: "paseos",
+    title: "No puedo comprar el recuerdo",
+    story: "Durante el paseo, {n} ve un juguete en la tienda, pero no tiene suficiente dinero.",
+    feels: ["tristeza", "enojo"],
+    validation: "Cuesta mucho querer algo y no poder llevarlo.",
+    learning: "Desear algo no significa que se tenga que conseguir inmediatamente.",
+    strategy: "Aceptar el límite y considerar ahorrar",
+    topic: "frustracion",
+    skills: ["calma", "resuelvo"],
+    set: "giftShop",
+    npcs: ["staff", "teacher"],
+    prop: "souvenir",
+    options: [
+      {
+        id: "A",
+        text: "Gritar.",
+        icon: "📢",
+        react: "outburst",
+        consequence:
+          "Las personas en la tienda se sorprenden y el juguete sigue costando lo mismo.",
+      },
+      {
+        id: "B",
+        text: "Tomarlo sin pagar.",
+        icon: "🤲",
+        react: "sneak",
+        consequence:
+          "Eso perjudica a quien atiende la tienda. Habría que devolverlo y hablarlo con un adulto.",
+      },
+      {
+        id: "C",
+        text: "Insultar.",
+        icon: "🤬",
+        react: "insult",
+        consequence: "La persona de la tienda se siente mal, aunque no tuvo la culpa.",
+      },
+      {
+        id: "D",
+        text: "Aceptar el límite y considerar ahorrar.",
+        icon: "🐷",
+        react: "breathe",
+        recommended: true,
+        consequence:
+          "{n} se siente triste, pero piensa cómo ahorrar. Hace un dibujo del juguete para recordarlo.",
+      },
+      {
+        id: "E",
+        text: "Esconder el producto.",
+        icon: "🤫",
+        react: "sneak",
+        consequence: "El juguete queda escondido y nadie puede comprarlo. El deseo sigue igual.",
+      },
+    ],
+  },
+  {
+    id: 22,
+    world: "paseos",
+    title: "Me caí durante el paseo",
+    story: "{n} se tropieza, le duele la rodilla y se asusta.",
+    feels: ["miedo", "tristeza"],
+    validation: "Duele y asusta. Llorar por dolor o por susto también está bien.",
+    learning:
+      "Al lastimarse, es importante pedir ayuda. Llorar por dolor o susto también está bien.",
+    strategy: "Avisar al adulto",
+    topic: "seguridad",
+    skills: ["reconozco", "resuelvo"],
+    set: "park",
+    npcs: ["teacher", "peer"],
+    prop: "plaster",
+    options: [
+      {
+        id: "A",
+        text: "Ocultarlo.",
+        icon: "🤐",
+        react: "withdraw",
+        consequence:
+          "La rodilla sigue doliendo y nadie puede curarla. Una herida sin revisar puede empeorar.",
+      },
+      {
+        id: "B",
+        text: "Culpar a alguien.",
+        icon: "👉",
+        react: "blame",
+        consequence: "El compañero se siente acusado, y la rodilla sigue sin atención.",
+      },
+      {
+        id: "C",
+        text: "Empujar.",
+        icon: "✋",
+        react: "harm",
+        consequence: "Ahora otra persona también podría lastimarse, y el dolor no se va.",
+      },
+      {
+        id: "D",
+        text: "Seguir caminando aunque necesita ayuda.",
+        icon: "🚶",
+        react: "withdraw",
+        consequence: "Caminar duele cada vez más y queda atrás del grupo.",
+      },
+      {
+        id: "E",
+        text: "Avisar al adulto y recibir atención.",
+        icon: "🩹",
+        react: "ask",
+        recommended: true,
+        consequence:
+          "{n} explica dónde le duele. La profesora limpia la rodilla, pone una venda y siguen juntos.",
+      },
+    ],
+  },
+];

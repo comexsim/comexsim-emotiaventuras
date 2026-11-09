@@ -205,6 +205,10 @@
 .biz-viewer canvas {
   display: block;
 }
+.biz-canvas {
+  position: absolute;
+  inset: 0;
+}
 .biz-viewer--loading,
 .biz-viewer--fallback {
   display: grid;
@@ -950,7 +954,11 @@
   }
   .biz-tabs button {
     flex: 1;
-    padding: 9px 8px;
+    padding: 9px 6px;
+    font-size: 0.92rem;
+  }
+  .biz-tabs button span {
+    display: none;
   }
   .biz-main {
     padding: 16px;
@@ -958,9 +966,34 @@
   .biz-intro h2 {
     font-size: 1.5rem;
   }
+  .biz-scenes {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+  .biz-scenes button {
+    flex: none;
+    font-size: 0.9rem;
+  }
+  /* En celular la tarjeta va debajo de la escena para no tapar a los personajes. */
   .biz-viewer {
-    height: 62vh;
-    min-height: 360px;
+    height: auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .biz-canvas {
+    position: relative;
+    inset: auto;
+    height: 52vh;
+    min-height: 300px;
+  }
+  .biz-viewer .biz-card {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    transform: none;
+    width: auto;
+    margin: 0 10px 10px;
   }
   .biz-pin {
     font-size: 0.72rem;
@@ -968,7 +1001,6 @@
   }
   .biz-card {
     padding: 10px 12px;
-    bottom: 10px;
   }
   .biz-card strong {
     font-size: 1.05rem;

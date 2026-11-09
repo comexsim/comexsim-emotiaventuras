@@ -172,54 +172,56 @@ export function SimViewer({ style, scene }: { style: SimStyle; scene: SimSceneId
       className={`biz-viewer biz-overlay--${style.overlay}`}
       style={{ background: style.scene.background }}
     >
-      {support && (
-        <Canvas
-          shadows="percentage"
-          dpr={[1, 2]}
-          camera={{ fov: 30, near: 0.1, far: 200, position: SHOTS[scene].position }}
-          gl={{ antialias: true, powerPreference: "high-performance" }}
-          onCreated={({ gl }) => {
-            gl.domElement.addEventListener("webglcontextlost", () => setLost(true));
-          }}
-        >
-          <color attach="background" args={[style.scene.background]} />
-          {style.scene.fog && (
-            <fog
-              attach="fog"
-              args={[style.scene.fog.color, style.scene.fog.near, style.scene.fog.far]}
+      <div className="biz-canvas">
+        {support && (
+          <Canvas
+            shadows="percentage"
+            dpr={[1, 2]}
+            camera={{ fov: 30, near: 0.1, far: 200, position: SHOTS[scene].position }}
+            gl={{ antialias: true, powerPreference: "high-performance" }}
+            onCreated={({ gl }) => {
+              gl.domElement.addEventListener("webglcontextlost", () => setLost(true));
+            }}
+          >
+            <color attach="background" args={[style.scene.background]} />
+            {style.scene.fog && (
+              <fog
+                attach="fog"
+                args={[style.scene.fog.color, style.scene.fog.near, style.scene.fog.far]}
+              />
+            )}
+            <hemisphereLight
+              args={[style.scene.hemi.sky, style.scene.hemi.ground, style.scene.hemi.intensity]}
             />
-          )}
-          <hemisphereLight
-            args={[style.scene.hemi.sky, style.scene.hemi.ground, style.scene.hemi.intensity]}
-          />
-          <directionalLight
-            color={style.scene.sun.color}
-            intensity={style.scene.sun.intensity}
-            position={[-5, 11, 8]}
-            castShadow
-            shadow-mapSize={[1536, 1536]}
-            shadow-camera-left={-18}
-            shadow-camera-right={18}
-            shadow-camera-top={18}
-            shadow-camera-bottom={-18}
-            shadow-camera-near={1}
-            shadow-camera-far={42}
-            shadow-bias={-0.0005}
-            shadow-normalBias={0.03}
-          />
-          <SceneContent key={scene} scene={scene} />
-          <Skinner style={style} />
-          <OrbitControls
-            makeDefault
-            enablePan={false}
-            enableZoom={false}
-            minPolarAngle={0.2}
-            maxPolarAngle={Math.PI / 2.1}
-          />
-          <Camera scene={scene} />
-          {scene === "mapa" && <PinProjector container={container} />}
-        </Canvas>
-      )}
+            <directionalLight
+              color={style.scene.sun.color}
+              intensity={style.scene.sun.intensity}
+              position={[-5, 11, 8]}
+              castShadow
+              shadow-mapSize={[1536, 1536]}
+              shadow-camera-left={-18}
+              shadow-camera-right={18}
+              shadow-camera-top={18}
+              shadow-camera-bottom={-18}
+              shadow-camera-near={1}
+              shadow-camera-far={42}
+              shadow-bias={-0.0005}
+              shadow-normalBias={0.03}
+            />
+            <SceneContent key={scene} scene={scene} />
+            <Skinner style={style} />
+            <OrbitControls
+              makeDefault
+              enablePan={false}
+              enableZoom={false}
+              minPolarAngle={0.2}
+              maxPolarAngle={Math.PI / 2.1}
+            />
+            <Camera scene={scene} />
+            {scene === "mapa" && <PinProjector container={container} />}
+          </Canvas>
+        )}
+      </div>
 
       {scene === "mapa" &&
         PINS.map((pin) => (

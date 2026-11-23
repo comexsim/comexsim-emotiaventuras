@@ -5,7 +5,7 @@
   "description": "EmotiAventuras: simulador infantil de emociones, frustración y resolución de problemas (5 a 9 años).",
   "type": "module",
   "license": "UNLICENSED",
-  "packageManager": "pnpm@12.18.0",
+  "packageManager": "pnpm@12.23.0",
   "engines": {
     "node": ">=22"
   },
